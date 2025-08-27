@@ -1,19 +1,29 @@
 Source: linux-base
 Section: kernel
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
-Uploaders: Deepin Packages Builder <packages@deepin.org>
-Standards-Version: 3.9.8
-Build-Depends: debhelper (>> 9), bash-completion, libtext-glob-perl, po4a
-#Vcs-Git
-#Vcs-Browser
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Uploaders: Ben Hutchings <benh@debian.org>, Salvatore Bonaccorso <carnil@debian.org>
+Standards-Version: 4.7.0
+Build-Depends: debhelper-compat (= 13), libtext-glob-perl <!nocheck>, po4a
+Vcs-Git: https://salsa.debian.org/kernel-team/linux-base.git
+Vcs-Browser: https://salsa.debian.org/kernel-team/linux-base
+Rules-Requires-Root: no
 
 Package: linux-base
 Architecture: all
 Depends: ${misc:Depends}
-Breaks: kernel-common (<= 13.018+nmu1)
+Breaks: kernel-common (<= 13.018+nmu1), linux-perf (<< 5.16.2-1~exp1)
 Replaces: kernel-common (<= 13.018+nmu1)
 Multi-Arch: foreign
 Description: Linux image base package
  This package contains files and support scripts for all Linux
  images.
+
+Package: linux-sysctl-defaults
+Architecture: all
+Priority: important
+Depends: ${misc:Depends}
+Multi-Arch: foreign
+Description: default sysctl configuration for Linux
+ This package contains a sysctl configuration file setting some
+ sensible defaults for Linux.
